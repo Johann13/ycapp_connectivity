@@ -9,7 +9,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  ycappconnectivity:
+  ycapp_connectivity:
     path: ../
 
   # The following adds the Cupertino Icons font to your application.
