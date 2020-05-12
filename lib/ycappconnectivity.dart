@@ -47,7 +47,7 @@ class YConnectivity {
             YConnectivityResult result = _parseConnectivityResult(event);
             print(result);
             return result;
-          });
+          }).asBroadcastStream();
     }
     return _onConnectivityChanged;
   }
@@ -59,7 +59,7 @@ class YConnectivity {
             print('eventChannelWifi');
             print(event);
             return event;
-          });
+          }).asBroadcastStream();
     }
     return _onWifiChanged;
   }
