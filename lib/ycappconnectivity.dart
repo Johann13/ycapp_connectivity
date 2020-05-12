@@ -54,10 +54,10 @@ class YConnectivity {
   Stream<int> get onWifiChanged {
     if (_onWifiChanged == null) {
       _onWifiChanged =
-          _eventChannelWifi.receiveBroadcastStream().map((int event) {
+          _eventChannelWifi.receiveBroadcastStream().map((dynamic event) {
         print('eventChannelWifi');
         print(event);
-        return event;
+        return event as int;
       }).asBroadcastStream();
     }
     return _onWifiChanged.asBroadcastStream();
