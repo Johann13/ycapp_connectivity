@@ -13,7 +13,6 @@ enum YConnectivityResult {
 }
 
 class YConnectivity {
-
   static const MethodChannel _methodChannel = MethodChannel(
     'ycappconnectivity/connectivity',
   );
@@ -42,26 +41,26 @@ class YConnectivity {
     if (_onConnectivityChanged == null) {
       _onConnectivityChanged =
           _eventChannelState.receiveBroadcastStream().map((dynamic event) {
-            print('eventChannelState');
-            print(event);
-            YConnectivityResult result = _parseConnectivityResult(event);
-            print(result);
-            return result;
-          }).asBroadcastStream();
+        print('eventChannelState');
+        print(event);
+        YConnectivityResult result = _parseConnectivityResult(event);
+        print(result);
+        return result;
+      }).asBroadcastStream();
     }
-    return _onConnectivityChanged;
+    return _onConnectivityChanged.asBroadcastStream();
   }
 
   Stream<int> get onWifiChanged {
     if (_onWifiChanged == null) {
       _onWifiChanged =
           _eventChannelWifi.receiveBroadcastStream().map((dynamic event) {
-            print('eventChannelWifi');
-            print(event);
-            return event;
-          }).asBroadcastStream();
+        print('eventChannelWifi');
+        print(event);
+        return event;
+      }).asBroadcastStream();
     }
-    return _onWifiChanged;
+    return _onWifiChanged.asBroadcastStream();
   }
 
   Future<YConnectivityResult> checkConnectivity() async {
