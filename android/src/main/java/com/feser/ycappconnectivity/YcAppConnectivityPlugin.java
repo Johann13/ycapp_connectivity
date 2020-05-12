@@ -178,6 +178,23 @@ public class YcAppConnectivityPlugin implements MethodCallHandler, FlutterPlugin
                 receiverConnectivity = null;
             }
         });
+        eventChannelWifi.setStreamHandler(new EventChannel.StreamHandler() {
+            @Override
+            public void onListen(Object o, EventChannel.EventSink events) {
+                receiverWifi = createReceiverWifi(events);
+                Log.d(TAG, "eventChannel.onListen");
+                context
+                        .registerReceiver(receiverWifi,
+                                new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+            }
+
+            @Override
+            public void onCancel(Object o) {
+                Log.d(TAG, "eventChannel.onCancel");
+                context.unregisterReceiver(receiverWifi);
+                receiverWifi = null;
+            }
+        });
     }
 
     private void teardownChannels() {
